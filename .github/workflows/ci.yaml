@@ -1,7 +1,7 @@
 # Quickstart for GitHub Actions
 # https://docs.github.com/en/actions/quickstart
 name: fast CI
-on: [ push, pull_request, workflow_dispatch ]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   test:
@@ -9,8 +9,11 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-        java: [ 8, 11, 17, 21, 22 ]
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        java: [8, 11, 17, 21, 22]
       fail-fast: false
       max-parallel: 64
     name: Fast CI on Java ${{ matrix.java }} OS ${{ matrix.os }}
