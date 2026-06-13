@@ -25,8 +25,10 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: ./mvnw -V --no-transfer-progress clean package
+        shell: bash
       - name: Run unit test under ttl agent, include check for ExecutorService, ForkJoinPool, Timer/TimerTask
         working-directory: ttl2-compatible
+        shell: bash
         run: >
           ../mvnw -V --no-transfer-progress
           -Penable-ttl-agent-for-test
@@ -34,6 +36,7 @@ jobs:
           '-Dttl.agent.extra.d.options=-Drun-ttl-test-under-agent-with-enable-timer-task=true'
       - name: Run unit test under ttl agent, and turn on the disable inheritable for thread pool enhancement
         working-directory: ttl2-compatible
+        shell: bash
         run: >
           ../mvnw -V --no-transfer-progress
           -Penable-ttl-agent-for-test
@@ -42,6 +45,7 @@ jobs:
           '-Dttl.agent.extra.d.options=-Drun-ttl-test-under-agent-with-disable-inheritable=true'
       - name: Run agent check for Timer/TimerTask, explicit "ttl.agent.enable.timer.task"
         working-directory: ttl2-compatible
+        shell: bash
         run: >
           ../mvnw -V --no-transfer-progress
           -Penable-ttl-agent-for-test
